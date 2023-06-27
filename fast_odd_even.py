@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 from tqdm import tqdm  
-from time import sleep
-class Sandbox:
+
+class Bitwise_Odd_Even:
   def doit():
     nums = range(-100_000_000,100_000_000)
     progress_bar = tqdm(nums, desc="checking odds and evens", total=len(nums))
@@ -18,5 +18,5 @@ class Sandbox:
     progress_bar.close()
 
 if __name__ == "__main__":
-  s = Sandbox
+  s = Bitwise_Odd_Even
   s.doit()
