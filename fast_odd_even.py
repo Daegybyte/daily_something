@@ -18,5 +18,4 @@ class Bitwise_Odd_Even:
     progress_bar.close()
 
 if __name__ == "__main__":
-  s = Bitwise_Odd_Even
-  s.doit()
+  Bitwise_Odd_Even.doit()
