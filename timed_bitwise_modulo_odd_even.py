@@ -11,7 +11,7 @@ class Timed_Odd_Even:
     
     @classmethod
     def bit_odd_even(self):
-        t = []
+        T = []
         for num in self.nums:
             start = time.time()
             if num & 1:
@@ -19,12 +19,12 @@ class Timed_Odd_Even:
             else:
                 pass
             end = time.time()
-            t.append(end - start)
-        return statistics.mean(t)
+            T.append(end - start)
+        return statistics.mean(T)
     
     @classmethod
     def modulo_odd_even(self):
-        t = []
+        T = []
         for num in self.nums:
             start = time.time()
             if num % 2 == 0:
@@ -32,8 +32,8 @@ class Timed_Odd_Even:
             else:
                 pass
             end = time.time()
-            t.append(end - start)
-        return statistics.mean(t)
+            T.append(end - start)
+        return statistics.mean(T)
             
     def warmup():
         i = 100_000_000
@@ -43,6 +43,6 @@ class Timed_Odd_Even:
 if __name__ == "__main__":
     
     Timed_Odd_Even.warmup()
-    t1 = Timed_Odd_Even.bit_odd_even()
-    t2 = Timed_Odd_Even.modulo_odd_even()
-    print(f"bitwise: {t1}\nmodulo: {t2}")
+    time_from_bitwise = Timed_Odd_Even.bit_odd_even()
+    time_from_modulo = Timed_Odd_Even.modulo_odd_even()
+    print(f"bitwise: {time_from_bitwise}\nmodulo: {time_from_modulo}")
