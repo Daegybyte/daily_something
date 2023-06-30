@@ -1,29 +1,21 @@
 # !/usr/bin/env python3
 import timeit
-import statistics
 
 class Timed_Odd_Even:
-    range_number = 100_000_000
-    nums = range(-range_number, range_number)
+    ITERS = 100_000_000
     
-    def __init__(cls, nums) -> None:
-       cls.nums = nums
+    def __init__(cls, ITERS) -> None:
+       cls.ITERS = ITERS
     
     @classmethod
     def bit_odd_even(cls):
-        times = []
-        for num in cls.nums:
-            t = timeit.timeit(lambda: num & 1 != 0, number=1) 
-            times.append(t)
-        return statistics.mean(times)
+        t = timeit.timeit(lambda: 2 & 1 == 0, number=cls.ITERS) # 010 & 001 = 000
+        return t
     
     @classmethod
     def modulo_odd_even(cls):
-        times = []
-        for num in cls.nums:
-            t = timeit.timeit(lambda: num % 2 == 0, number=1)
-            times.append(t)
-        return statistics.mean(times)
+        t = timeit.timeit(lambda: 2 % 2 == 0, number=cls.ITERS)
+        return t
             
     def warmup():
         i = 100_000_000
