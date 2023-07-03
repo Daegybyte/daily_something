@@ -1,36 +1,32 @@
-# !/usr/bin/env python3
 import timeit
+import statistics
 
 class Timed_Odd_Even:
-    ITERS = 100_000_000
+    def __init__(self, NUMBER, REPS):
+       self.num = NUMBER
+       self.reps = REPS
     
-    def __init__(cls, ITERS) -> None:
-       cls.ITERS = ITERS
+    def bit_odd_even(self):
+        t = timeit.repeat(lambda: 2 & 1 == 0, number=self.num, repeat=self.reps)  # 010 & 001 = 000
+        return statistics.mean(t), min(t)
     
-    @classmethod
-    def bit_odd_even(cls):
-        t = timeit.timeit(lambda: 2 & 1 == 0, number=cls.ITERS) # 010 & 001 = 000
-        return t
-    
-    @classmethod
-    def modulo_odd_even(cls):
-        t = timeit.timeit(lambda: 2 % 2 == 0, number=cls.ITERS)
-        return t
-            
-    def warmup():
-        i = 100_000_000
+    def modulo_odd_even(self):
+        t = timeit.repeat(lambda: 2 % 2 == 0, number=self.num, repeat=self.reps)  # 2 % 2 = 0        
+        return statistics.mean(t), min(t)
+
+    def warmup(self):
+        i = 1_000_000_000
         while i != 0:
             i = i - 1
+        
 
 if __name__ == "__main__":
+    NUMBER = 100_000
+    REPS = 100_000
     
-    Timed_Odd_Even.warmup()
-    time_from_bitwise = Timed_Odd_Even.bit_odd_even()
-    time_from_modulo = Timed_Odd_Even.modulo_odd_even()
-    print(f"bitwise: {time_from_bitwise}\nmodulo: {time_from_modulo}")
+    instance = Timed_Odd_Even(NUMBER, REPS)
+    instance.warmup()
+    time_from_bitwise, min_bit = instance.bit_odd_even()
+    time_from_modulo, min_mod = instance.modulo_odd_even()
     
-    '''
-    Results:
-    bitwise: 3.387022477137342e-07
-    modulo: 1.2299952507019042e-07
-    '''
+    print(f"bitwise: {time_from_bitwise} min: {min_bit}\nmodulo: {time_from_modulo} min: {min_mod}")
