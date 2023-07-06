@@ -23,6 +23,5 @@ if __name__ == "__main__":
     print(primes)
     
     nums = range(1, 1_000)
-    inst = Py_Primes(nums = nums)
     primes = list(filter(inst.is_prime, nums))
     print(primes)
