@@ -24,3 +24,5 @@ class In_Place:
 if __name__ == "__main__":
     instance = In_Place()
     instance.slice_assignment()
+    instance_2 = In_Place(nums=[1,2], r_loc=1, replacements=[10,20,30])
+    instance_2.slice_assignment()
